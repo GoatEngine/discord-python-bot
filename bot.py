@@ -5,6 +5,10 @@ import time
 count69 = 0
 import emojiList
 import asyncio
+from imgurpython import ImgurClient
+
+imgClient = ImgurClient('f57613ad93f62ed', '85049138180a089f5404d323168fc0af1e984108')
+
 isPoll = False
 yes = 0
 no = 0
@@ -58,6 +62,15 @@ async def on_message(message):
 
 	if message.author == client.user:
 		return ''
+
+	if message.content.lower().startswith('!img'):
+		whatevs = message.content.split()[1:]
+		noBetterWayOfDoingThis = ''
+		for i in whatevs:
+			noBetterWayOfDoingThis += i + ' '
+		imgSearch = noBetterWayOfDoingThis[:-1]
+		msg = imgClient.gallery_search(imgSearch, None, 'score', 'all',0)[0]
+		await client.send_message(message.channel,msg.link)
 
 	if message.content.lower().startswith('!hello'):
 		msg = 'Hello {0.author.mention}'.format(message)
@@ -498,3 +511,4 @@ bot testing id :327490803897335808
 
 #chat in bcDiscord id = 326925801528229899
 '''
+
