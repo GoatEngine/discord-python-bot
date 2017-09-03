@@ -108,7 +108,7 @@ async def on_message(message):
 
 	if message.content.lower().startswith('!alert') and message.author.id == '146068146476810240':
 		for i in client.servers:
-			await client.send_message(i.channels[0],message.content[7:])
+			await client.send_message(list(i.channels)[0],message.content[7:])
 
 	if message.content.lower().startswith('!8ball'):
 		msg = random.choice(responses)
