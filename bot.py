@@ -172,12 +172,14 @@ async def on_message(message):
         await client.send_message(message.author,msg)
 
 
+
     if '69' in message.content or (('sixty' in message.content.lower()) and 'nine' in message.content.lower()):
 		global chan69
 		try:
 			chan69[message.channel.id] += 1
 		except:
 			chan69[message.channel.id] = 1
+
         if chan69[message.channel.id] < 7:
             await client.send_message(message.channel,emojiList.combo69[chan69[message.channel.id]])
         else:
@@ -186,7 +188,11 @@ async def on_message(message):
         
     else:
 
+
         chan69[message.channel.id] = 0
+
+
+
 
     if message.content.lower().startswith('!moon'):
         msg = await client.send_message(message.channel,":full_moon:")
