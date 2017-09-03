@@ -172,6 +172,7 @@ async def on_message(message):
         await client.send_message(message.author,msg)
 
 
+
     if '69' in message.content or (('sixty' in message.content.lower()) and 'nine' in message.content.lower()):
 		global chan69
 		try:
