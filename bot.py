@@ -69,7 +69,7 @@ async def on_message(message):
 		for i in whatevs:
 			noBetterWayOfDoingThis += i + ' '
 		imgSearch = noBetterWayOfDoingThis[:-1]
-		msg = imgClient.gallery_search(imgSearch, None, 'score', 'all',0)[0]
+		msg = imgClient.gallery_search(imgSearch, advanced=None, sort='top')[0]
 		await client.send_message(message.channel,msg.link)
 
 	if message.content.lower().startswith('!hello'):
@@ -106,7 +106,9 @@ async def on_message(message):
 			await client.send_message(message.channel,msg)
 
 
-
+	if message.content.lower().startswith('!alert') and message.author.id == '146068146476810240':
+		for i in client.servers:
+			await client.send_message(i.channels[0],message.content[7:]
 
 	if message.content.lower().startswith('!8ball'):
 		msg = random.choice(responses)
