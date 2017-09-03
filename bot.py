@@ -11,6 +11,7 @@ no = 0
 userVoted = []
 logsChannel = ''
 bcChannels = []
+chan69 = {}
 numlist = {'0' : 'zero', '1' : 'one', '2': 'two', '3' : 'three', '4' : 'four', '5' : 'five', '6' : 'six', '7' : 'seven', '8' : 'eight', '9' : 'nine'}
 responses = [
 'Yes, definitely.',
@@ -171,18 +172,23 @@ async def on_message(message):
         await client.send_message(message.author,msg)
 
 
+
     if '69' in message.content or (('sixty' in message.content.lower()) and 'nine' in message.content.lower()):
-        global count69
-        count69 += 1
-        if count69 < 7:
-            await client.send_message(message.channel,emojiList.combo69[count69])
+		global chan69
+		try:
+			chan69[message.channel.id] += 1
+		except:
+			chan69[message.channel.id] = 1
+    
+        
+        if chan69[message.channel.id] < 7:
+            await client.send_message(message.channel,emojiList.combo69[chan69[message.channel.id]])
         else:
-            await client.send_message(message.channel,emojiList.counter69(count69))
+            await client.send_message(message.channel,emojiList.counter69(chan69[message.channel.id]))
         
         
     else:
-
-        count69 = 0
+		chan69[message.channel.id] = 0
 
     if message.content.lower().startswith('!moon'):
         msg = await client.send_message(message.channel,":full_moon:")
